@@ -3,6 +3,13 @@ international-phone-number
 
 AngularJS directive implementing intl-tel-input (https://github.com/Bluefieldscom/intl-tel-input) 
 
+Installation
+--
+install via bower:
+`bower install international-phone-number --save`
+add module dependcy to application:
+`internationalPhoneNumber`
+
 DEMO
 --
 Available from souce project at https://github.com/Bluefieldscom/intl-tel-input#demo-and-examples
