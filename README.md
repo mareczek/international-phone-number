@@ -19,6 +19,20 @@ Default options
 --
 Same as in source project (https://github.com/Bluefieldscom/intl-tel-input)
 
+Sneak preview:
+```coffeescript
+    options =
+      autoFormat:         true
+      autoHideDialCode:   true
+      defaultCountry:     ''
+      nationalMode:       false
+      numberType:         ''
+      onlyCountries:      undefined
+      preferredCountries: ['us', 'gb']
+      responsiveDropdown: false
+      utilsScript:        ""
+```
+
 Usage
 ---
 Works for `text` and `tel` input types.
