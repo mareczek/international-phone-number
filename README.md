@@ -1,7 +1,7 @@
 international-phone-number
 ==========================
 
-AngularJS directive implementing intl-tel-input (https://github.com/Bluefieldscom/intl-tel-input) 
+AngularJS directive implementing intl-tel-input (https://github.com/Bluefieldscom/intl-tel-input) jQuery plugin.
 
 Installation
 --
@@ -12,7 +12,7 @@ add module dependcy to application:
 
 DEMO
 --
-Available from souce project at https://github.com/Bluefieldscom/intl-tel-input#demo-and-examples
+Available from souce project at http://jackocnr.com/intl-tel-input.html
 
 
 Default options
