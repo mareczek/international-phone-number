@@ -32,6 +32,7 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
 
     angular.forEach options, (value, key) ->
       return unless attrs.hasOwnProperty(key) and angular.isDefined(attrs[key])
+      option = attrs[key]
       if key == 'preferredCountries'
         options.preferredCountries = handleWhatsSupposedToBeAnArray option
       else if key == 'onlyCountries'
