@@ -31,21 +31,21 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
       utilsScript:        ""
 
     angular.forEach options, (value, key) ->
-      option = eval("attrs.#{key}")
-      if angular.isDefined(option)
-        if key == 'preferredCountries'
-          options.preferredCountries = handleWhatsSupposedToBeAnArray option
-        else if key == 'onlyCountries'
-            options.onlyCountries = handleWhatsSupposedToBeAnArray option
-        else if typeof(value) == "boolean"
-          options[key] = (option == "true")
-        else
-          options[key] = option
+      return unless attrs.hasOwnProperty(key) and angular.isDefined(attrs[key])
+      option = attrs[key]
+      if key == 'preferredCountries'
+        options.preferredCountries = handleWhatsSupposedToBeAnArray option
+      else if key == 'onlyCountries'
+        options.onlyCountries = handleWhatsSupposedToBeAnArray option
+      else if typeof(value) == "boolean"
+        options[key] = (option == "true")
+      else
+        options[key] = option
 
     element.intlTelInput(options)
 
     unless options.utilsScript
-      element.intlTelInput('loadUtils', 'bower_components/intl-tel-input/lib/libphonenumber/build/utils.js')
+      element.intlTelInput('loadUtils', '/bower_components/intl-tel-input/lib/libphonenumber/build/utils.js')
 
     ctrl.$parsers.push (value) ->
       return value if !value
