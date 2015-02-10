@@ -56,7 +56,7 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
         
         element.intlTelInput(options)
 
-        unless options.utilsScript
+        unless attrs.skipUtilScriptDownload != undefined || options.utilsScript
           element.intlTelInput('loadUtils', '/bower_components/intl-tel-input/lib/libphonenumber/build/utils.js')
       
         watchOnce()

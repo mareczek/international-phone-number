@@ -67,4 +67,6 @@ Feel free to mix options together:
 <input type="text" international-phone-number only-countries="pl, de, en, es" default-country="pl" preferred-countries="pl, de" ng-model="phone">
 ```
 
-
+Options
+---
+By default the directive lazy loads utils.js. If you want to load this yourself, use the `skip-util-script-download` attribute.
