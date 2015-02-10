@@ -13,6 +13,8 @@ Add module dependcy to application:
 
 intl-tel-input is installed as a dependency. Make sure `intTelInput.js` is loaded first and add `flags.png` and `intlTelInput.css` to your project.
 
+You can optionally include `bower_components/intl-tel-input/lib/libphonenumber/build/utils.js`.
+
 DEMO
 --
 Available from souce project at http://jackocnr.com/intl-tel-input.html
