@@ -17,7 +17,7 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
       ctrl.$setViewValue element.val()
 
     handleWhatsSupposedToBeAnArray = (value) ->
-      if typeof(value) == "object"
+      if value instanceof Array
         value
       else
         value.toString().replace(/[ ]/g, '').split(',')
@@ -71,7 +71,9 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
 
     ctrl.$parsers.push (value) ->
       if value
-        ctrl.$setValidity 'international-phone-number', element.intlTelInput("isValidNumber")
+        validity = element.intlTelInput("isValidNumber")
+        ctrl.$setValidity 'international-phone-number', validity
+        ctrl.$setValidity '', validity
       else
         value = ''
         delete ctrl.$error['international-phone-number']
