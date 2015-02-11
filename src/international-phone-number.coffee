@@ -6,7 +6,10 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
 
   restrict:   'A'
   require: '^ngModel'
-  scope: true
+  scope: {
+    ngModel: '='
+    defaultCountry: '@'
+  }
 
   link: (scope, element, attrs, ctrl) ->
 
@@ -42,10 +45,25 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
       else
         options[key] = option
 
-    element.intlTelInput(options)
+    # Wait for ngModel to be set
+    watchOnce = scope.$watch('ngModel', (newValue) ->
+      # Wait to see if other scope variables were set at the same time
+      scope.$$postDigest ->
+        options.defaultCountry = scope.defaultCountry
+        
+        if newValue != null and newValue != undefined and newValue != ''
+          element.val newValue
+        
+        element.intlTelInput(options)
 
-    unless options.utilsScript
-      element.intlTelInput('loadUtils', '/bower_components/intl-tel-input/lib/libphonenumber/build/utils.js')
+        unless options.utilsScript
+          element.intlTelInput('loadUtils', '/bower_components/intl-tel-input/lib/libphonenumber/build/utils.js')
+      
+        watchOnce()
+
+    )
+
+
 
     ctrl.$parsers.push (value) ->
       return value if !value
