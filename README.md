@@ -5,10 +5,15 @@ AngularJS directive implementing intl-tel-input (https://github.com/Bluefieldsco
 
 Installation
 --
-install via bower:
+Install via Bower:
 `bower install international-phone-number --save`
-add module dependcy to application:
+
+Add module dependcy to application:
 `internationalPhoneNumber`
+
+intl-tel-input is installed as a dependency. Make sure `intTelInput.js` is loaded first and add `flags.png` and `intlTelInput.css` to your project.
+
+You can optionally include `bower_components/intl-tel-input/lib/libphonenumber/build/utils.js`.
 
 DEMO
 --
