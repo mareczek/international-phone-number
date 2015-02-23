@@ -64,6 +64,9 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
     )
 
 
+    ctrl.$formatters.push (value) ->
+      element.intlTelInput 'setNumber', value
+      return element.val
 
     ctrl.$parsers.push (value) ->
       return value if !value
