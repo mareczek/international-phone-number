@@ -88,4 +88,5 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
       scope.$apply read
 
     element.on '$destroy', () ->
+      element.intlTelInput('destroy');
       element.off 'blur keyup change'

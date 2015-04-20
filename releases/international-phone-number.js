@@ -87,6 +87,7 @@
           return scope.$apply(read);
         });
         return element.on('$destroy', function() {
+          element.intlTelInput('destroy');
           return element.off('blur keyup change');
         });
       }
