@@ -2,7 +2,7 @@
 # https://github.com/mareczek/international-phone-number
 
 "use strict"
-angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumber', () ->
+angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumber', ($timeout) ->
 
   restrict:   'A'
   require: '^ngModel'
@@ -50,37 +50,39 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
       # Wait to see if other scope variables were set at the same time
       scope.$$postDigest ->
         options.defaultCountry = scope.defaultCountry
-        
+
         if newValue != null and newValue != undefined and newValue != ''
           element.val newValue
-        
+
         element.intlTelInput(options)
 
         unless attrs.skipUtilScriptDownload != undefined || options.utilsScript
           element.intlTelInput('loadUtils', '/bower_components/intl-tel-input/lib/libphonenumber/build/utils.js')
-      
+
         watchOnce()
 
     )
 
 
     ctrl.$formatters.push (value) ->
-      element.intlTelInput 'setNumber', value
-      return element.val
+      if !value
+        return value
+      else
+        $timeout () ->
+          element.intlTelInput 'setNumber', value
+        , 0
+        return element.val()
 
     ctrl.$parsers.push (value) ->
       return value if !value
       value.replace(/[^\d]/g, '')
 
-    ctrl.$parsers.push (value) ->
-      if value
-        validity = element.intlTelInput("isValidNumber")
-        ctrl.$setValidity 'international-phone-number', validity
-        ctrl.$setValidity '', validity
+    ctrl.$validators.internationalPhoneNumber = (value) ->
+      if !value
+        return value
       else
-        value = ''
-        delete ctrl.$error['international-phone-number']
-      value
+        return element.intlTelInput("isValidNumber")
+
 
     element.on 'blur keyup change', (event) ->
       scope.$apply read
