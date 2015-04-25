@@ -57,7 +57,7 @@ with default country:
 <input type="text" international-phone-number default-country="pl" ng-model="phone">
 ```
 
-with only contries:
+with only countries:
 ```html
 <input type="text" international-phone-number only-countries ng-model="phone">
 ```
