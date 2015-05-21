@@ -2,7 +2,7 @@
 # https://github.com/mareczek/international-phone-number
 
 "use strict"
-angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumber', ($timeout) ->
+angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumber', ['$timeout', ($timeout) ->
 
   restrict:   'A'
   require: '^ngModel'
@@ -90,3 +90,4 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
     element.on '$destroy', () ->
       element.intlTelInput('destroy');
       element.off 'blur keyup change'
+]
