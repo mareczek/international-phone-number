@@ -14,10 +14,11 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
   link: (scope, element, attrs, ctrl) ->
 
     if ctrl
-      $timeout () ->
-        element.intlTelInput 'setNumber', element.val()
-        ctrl.$setViewValue element.val()
-      , 0
+      if element.val() != ''
+        $timeout () ->
+          element.intlTelInput 'setNumber', element.val()
+          ctrl.$setViewValue element.val()
+        , 0
 
 
     read = () ->
