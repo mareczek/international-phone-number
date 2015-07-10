@@ -86,10 +86,14 @@
             return value.replace(/[^\d]/g, '');
           });
           ctrl.$validators.internationalPhoneNumber = function(value) {
-            if (!value) {
-              return value;
+            if (element.attr('required')) {
+              if (!value) {
+                return false;
+              } else {
+                return element.intlTelInput("isValidNumber");
+              }
             } else {
-              return element.intlTelInput("isValidNumber");
+              return true;
             }
           };
           element.on('blur keyup change', function(event) {
