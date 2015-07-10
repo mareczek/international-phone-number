@@ -92,7 +92,13 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
         else
           return element.intlTelInput("isValidNumber")
       else
-        return true
+        if element.intlTelInput("getSelectedCountryData").dialCode == value
+          return true
+        else
+          if !value
+            return true
+          else 
+            return element.intlTelInput("isValidNumber")
 
 
     element.on 'blur keyup change', (event) ->
