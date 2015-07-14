@@ -13,6 +13,14 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
 
   link: (scope, element, attrs, ctrl) ->
 
+    if ctrl
+      if element.val() != ''
+        $timeout () ->
+          element.intlTelInput 'setNumber', element.val()
+          ctrl.$setViewValue element.val()
+        , 0
+
+
     read = () ->
       ctrl.$setViewValue element.val()
 
@@ -78,10 +86,19 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
       value.replace(/[^\d]/g, '')
 
     ctrl.$validators.internationalPhoneNumber = (value) ->
-      if !value
-        return value
+      if element.attr('required')
+        if !value
+          return false
+        else
+          return element.intlTelInput("isValidNumber")
       else
-        return element.intlTelInput("isValidNumber")
+        if element.intlTelInput("getSelectedCountryData").dialCode == value
+          return true
+        else
+          if !value
+            return true
+          else 
+            return element.intlTelInput("isValidNumber")
 
 
     element.on 'blur keyup change', (event) ->
