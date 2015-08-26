@@ -72,12 +72,9 @@
           ctrl.$formatters.push(function(value) {
             if (!value) {
               return value;
-            } else {
-              $timeout(function() {
-                return element.intlTelInput('setNumber', value);
-              }, 0);
-              return element.val();
             }
+            element.intlTelInput('setNumber', value);
+            return element.val();
           });
           ctrl.$parsers.push(function(value) {
             if (!value) {
@@ -86,23 +83,10 @@
             return value.replace(/[^\d]/g, '');
           });
           ctrl.$validators.internationalPhoneNumber = function(value) {
-            if (element.attr('required')) {
-              if (!value) {
-                return false;
-              } else {
-                return element.intlTelInput("isValidNumber");
-              }
-            } else {
-              if (element.intlTelInput("getSelectedCountryData").dialCode === value) {
-                return true;
-              } else {
-                if (!value) {
-                  return true;
-                } else {
-                  return element.intlTelInput("isValidNumber");
-                }
-              }
+            if (!value) {
+              return true;
             }
+            return element.intlTelInput("isValidNumber");
           };
           element.on('blur keyup change', function(event) {
             return scope.$apply(read);
