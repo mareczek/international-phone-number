@@ -83,7 +83,9 @@
             return value.replace(/[^\d]/g, '');
           });
           ctrl.$validators.internationalPhoneNumber = function(value) {
-            if (!value) {
+            var selectedCountry;
+            selectedCountry = element.intlTelInput('getSelectedCountryData');
+            if (!value || (selectedCountry && selectedCountry.dialCode === value)) {
               return true;
             }
             return element.intlTelInput("isValidNumber");
