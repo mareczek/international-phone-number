@@ -59,7 +59,10 @@
           watchOnce = scope.$watch('ngModel', function(newValue) {
             return scope.$$postDigest(function() {
               options.defaultCountry = scope.defaultCountry;
-              if (newValue !== null && newValue !== void 0 && newValue !== '') {
+              if (newValue !== null && newValue !== void 0 && newValue.length > 0) {
+                if (newValue[0] !== '+') {
+                  newValue = '+' + newValue;
+                }
                 element.val(newValue);
               }
               element.intlTelInput(options);
