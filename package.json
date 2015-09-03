@@ -1,6 +1,6 @@
 {
   "name": "international-phone-number",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "description": "AngularJS directive for intl-tel-input jQuery plugin",
   "keywords": [
     "international",
