@@ -59,7 +59,11 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
       scope.$$postDigest ->
         options.defaultCountry = scope.defaultCountry
 
-        if newValue != null and newValue != undefined and newValue != ''
+        if newValue != null && newValue != undefined && newValue.length > 0
+
+          if newValue[0] != '+'
+            newValue = '+' + newValue
+
           element.val newValue
 
         element.intlTelInput(options)
