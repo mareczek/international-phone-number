@@ -17,6 +17,7 @@ You can optionally include `bower_components/intl-tel-input/lib/libphonenumber/b
 
 DEMO
 --
+Provided by skfd: http://plnkr.co/edit/DYyfGj?p=preview
 Available from souce project at http://jackocnr.com/intl-tel-input.html
 
 
