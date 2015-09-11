@@ -28,16 +28,30 @@ Same as in source project (https://github.com/Bluefieldscom/intl-tel-input)
 
 Sneak preview:
 ```coffeescript
-    options =
-      autoFormat:         true
-      autoHideDialCode:   true
-      defaultCountry:     ''
-      nationalMode:       false
-      numberType:         ''
-      onlyCountries:      undefined
-      preferredCountries: ['us', 'gb']
-      responsiveDropdown: false
-      utilsScript:        ""
+    allowExtensions:    false
+    autoFormat:         true
+    autoHideDialCode:   true
+    autoPlaceholder:    true
+    customPlaceholder:  null
+    defaultCountry:     ""
+    geoIpLookup:        null
+    nationalMode:       true
+    numberType:         "MOBILE"
+    onlyCountries:      undefined
+    preferredCountries: ['us', 'gb']
+    utilsScript:        ""
+```
+
+Global configuration (in angulars config phase)
+---
+There is a constant `ipnConfig` available in which all of the defaults are configured.
+To change the defaults simply use the `ipnConfig` object:
+```coffeescript
+angular.module('app')
+    .config (ipnConfig) ->
+        ipnConfig.defaultCountry = 'pl'
+        ipnConfig.preferredCountries = ['pl', 'de', 'fr', 'uk', 'es']
+
 ```
 
 Usage
