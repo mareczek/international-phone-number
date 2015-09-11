@@ -2,14 +2,29 @@
 # https://github.com/mareczek/international-phone-number
 
 "use strict"
-angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumber', ['$timeout', ($timeout) ->
+angular.module("internationalPhoneNumber", [])
+
+.constant 'ipnConfig', {
+    allowExtensions:    false
+    autoFormat:         true
+    autoHideDialCode:   true
+    autoPlaceholder:    true
+    customPlaceholder:  null
+    defaultCountry:     ""
+    geoIpLookup:        null
+    nationalMode:       true
+    numberType:         "MOBILE"
+    onlyCountries:      undefined
+    preferredCountries: ['us', 'gb']
+    utilsScript:        ""
+  }
+
+.directive 'internationalPhoneNumber', ['$timeout', 'ipnConfig', ($timeout, ipnConfig) ->
 
   restrict:   'A'
   require: '^ngModel'
-  scope: {
+  scope:
     ngModel: '='
-    defaultCountry: '@'
-  }
 
   link: (scope, element, attrs, ctrl) ->
 
@@ -30,16 +45,7 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
       else
         value.toString().replace(/[ ]/g, '').split(',')
 
-    options =
-      autoFormat:         true
-      autoHideDialCode:   true
-      defaultCountry:     ''
-      nationalMode:       false
-      numberType:         ''
-      onlyCountries:      undefined
-      preferredCountries: ['us', 'gb']
-      responsiveDropdown: false
-      utilsScript:        ""
+    options = ipnConfig
 
     angular.forEach options, (value, key) ->
       return unless attrs.hasOwnProperty(key) and angular.isDefined(attrs[key])
@@ -57,7 +63,6 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
     watchOnce = scope.$watch('ngModel', (newValue) ->
       # Wait to see if other scope variables were set at the same time
       scope.$$postDigest ->
-        options.defaultCountry = scope.defaultCountry
 
         if newValue != null && newValue != undefined && newValue.length > 0
 
