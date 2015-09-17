@@ -41,7 +41,7 @@
               return value.toString().replace(/[ ]/g, '').split(',');
             }
           };
-          options = ipnConfig;
+          options = angular.copy(ipnConfig);
           angular.forEach(options, function(value, key) {
             var option;
             if (!(attrs.hasOwnProperty(key) && angular.isDefined(attrs[key]))) {

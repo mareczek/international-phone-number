@@ -45,7 +45,7 @@ angular.module("internationalPhoneNumber", [])
       else
         value.toString().replace(/[ ]/g, '').split(',')
 
-    options = ipnConfig
+    options = angular.copy(ipnConfig)
 
     angular.forEach options, (value, key) ->
       return unless attrs.hasOwnProperty(key) and angular.isDefined(attrs[key])
