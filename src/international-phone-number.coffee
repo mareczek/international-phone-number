@@ -5,18 +5,19 @@
 angular.module("internationalPhoneNumber", [])
 
 .constant 'ipnConfig', {
-    allowExtensions:    false
-    autoFormat:         true
-    autoHideDialCode:   true
-    autoPlaceholder:    true
-    customPlaceholder:  null
-    defaultCountry:     ""
-    geoIpLookup:        null
-    nationalMode:       true
-    numberType:         "MOBILE"
-    onlyCountries:      undefined
-    preferredCountries: ['us', 'gb']
-    utilsScript:        ""
+    allowExtensions:        false
+    autoFormat:             true
+    autoHideDialCode:       true
+    autoPlaceholder:        true
+    customPlaceholder:      null
+    defaultCountry:         ""
+    geoIpLookup:            null
+    nationalMode:           true
+    numberType:             "MOBILE"
+    onlyCountries:          undefined
+    preferredCountries:     ['us', 'gb']
+    skipUtilScriptDownload: false
+    utilsScript:            ""
   }
 
 .directive 'internationalPhoneNumber', ['$timeout', 'ipnConfig', ($timeout, ipnConfig) ->
@@ -73,7 +74,7 @@ angular.module("internationalPhoneNumber", [])
 
         element.intlTelInput(options)
 
-        unless attrs.skipUtilScriptDownload != undefined || options.utilsScript
+        unless options.skipUtilScriptDownload || attrs.skipUtilScriptDownload != undefined || options.utilsScript
           element.intlTelInput('loadUtils', '/bower_components/intl-tel-input/lib/libphonenumber/build/utils.js')
 
         watchOnce()
