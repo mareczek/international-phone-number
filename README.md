@@ -28,18 +28,19 @@ Same as in source project (https://github.com/Bluefieldscom/intl-tel-input)
 
 Sneak preview:
 ```coffeescript
-    allowExtensions:    false
-    autoFormat:         true
-    autoHideDialCode:   true
-    autoPlaceholder:    true
-    customPlaceholder:  null
-    defaultCountry:     ""
-    geoIpLookup:        null
-    nationalMode:       true
-    numberType:         "MOBILE"
-    onlyCountries:      undefined
-    preferredCountries: ['us', 'gb']
-    utilsScript:        ""
+    allowExtensions:        false
+    autoFormat:             true
+    autoHideDialCode:       true
+    autoPlaceholder:        true
+    customPlaceholder:      null
+    defaultCountry:         ""
+    geoIpLookup:            null
+    nationalMode:           true
+    numberType:             "MOBILE"
+    onlyCountries:          undefined
+    preferredCountries:     ['us', 'gb']
+    skipUtilScriptDownload: false
+    utilsScript:            ""
 ```
 
 Global configuration (in angulars config phase)
@@ -85,7 +86,7 @@ Feel free to mix options together:
 
 Options
 ---
-By default the directive lazy loads utils.js. If you want to load this yourself, use the `skip-util-script-download` attribute.
+By default the directive lazy loads utils.js. If you want to load this yourself, use the `skip-util-script-download` attribute or set the ipnConfig.skipUtilScriptDownload to true.
 
 
 License
