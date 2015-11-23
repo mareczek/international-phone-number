@@ -1,7 +1,7 @@
 international-phone-number
 ==========================
 
-AngularJS directive implementing intl-tel-input (https://github.com/Bluefieldscom/intl-tel-input) jQuery plugin.
+AngularJS directive implementing [intl-tel-input](https://github.com/Bluefieldscom/intl-tel-input) jQuery plugin.
 
 Installation
 --
@@ -15,11 +15,11 @@ intl-tel-input is installed as a dependency. Make sure `intTelInput.js` is loade
 
 You can optionally include `bower_components/intl-tel-input/lib/libphonenumber/build/utils.js`.
 
-DEMO
+DEMOS
 --
-Provided by skfd: http://plnkr.co/edit/DYyfGj?p=preview
+[Plunkr](http://plnkr.co/edit/DYyfGj?p=preview)
 
-Available from souce project at http://jackocnr.com/intl-tel-input.html
+[int-tel-input jQuery plugin demo](http://jackocnr.com/intl-tel-input.html)
 
 
 Default options
@@ -64,6 +64,11 @@ NgModel is required
 <input type="text" international-phone-number ng-model="phone">
 ```
 
+with bound country. Useful when you have external contries control:
+```html
+<input type="text" international-phone-number only-countries ng-model="phone" country="country">
+```
+
 with preferred countries:
 ```html
 <input type="text" international-phone-number preferred-countries="pl, de" ng-model="phone">
@@ -74,7 +79,7 @@ with default country:
 <input type="text" international-phone-number default-country="pl" ng-model="phone">
 ```
 
-with only countries:
+with countries only:
 ```html
 <input type="text" international-phone-number only-countries ng-model="phone">
 ```
