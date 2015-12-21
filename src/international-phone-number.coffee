@@ -71,7 +71,7 @@ angular.module("internationalPhoneNumber", [])
           if newValue[0] != '+'
             newValue = '+' + newValue
 
-          element.val newValue
+          ctrl.$modelValue = newValue
 
         element.intlTelInput(options)
 
@@ -81,7 +81,7 @@ angular.module("internationalPhoneNumber", [])
         watchOnce()
 
     )
-    
+
     scope.$watch('country', (newValue) ->
         if newValue != null && newValue != undefined && newValue != ''
             element.intlTelInput("selectCountry", newValue)
